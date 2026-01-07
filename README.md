@@ -1,4 +1,4 @@
-## Description
+## Cross Zone HA(A-P) FortiGates with PAR
 
 A Terraform script to deploy Cross Zone HA(A-P) cluster via Public Address Range. This template makes use of the FortiGate IBM SDN connector to failover in the event of a VM shutdown.
 After the active VM is back up, it will take over as active once again.
@@ -11,7 +11,7 @@ After the active VM is back up, it will take over as active once again.
 -   [Public Gateways attached to egress subnets ](https://cloud.ibm.com/docs/vpc?topic=vpc-about-public-gateways)*(license validation requires egress connection to FortiGuard Servers)*
 -   [A configured IBM SSH key](https://cloud.ibm.com/docs/vpc?topic=vpc-ssh-keys)
 -   [A security group](https://cloud.ibm.com/docs/security-groups?topic=security-groups-about-ibm-security-groups)
--   [2 Public Gateways(per Zone)](https://cloud.ibm.com/docs/vpc?topic=vpc-about-public-gateways)
+
 
 ## Deployment overview
 
