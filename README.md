@@ -26,10 +26,6 @@ Terraform deploys the following components:
 -   One log disk per FortiGate.
 -   A basic bootstrap configuration with HA support.
 
-# Deployment Diagram
-
-![IBM FortiGate HA PAR Diagram](https://raw.githubusercontent.com/fortinet/ibm-fortigate-cross-zone-ha-par-terraform-deploy/main/imgs/ibm_ha_par_resource_fgt.png)
-
 ## Deployment
 
 > **Note:** For Subnets, the UUID is required.
