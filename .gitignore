@@ -1,15 +1,9 @@
 #Terraform State and vars
 terraform
-.terraform*
-terraform.*
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
 crash.log
-account.json
-assets/configset/baseconfig.rendered
-#Local dev
-.exampleOutputs
-
-# Git script
-git-dev-merge
 
 # project-specific
 **/dist
@@ -31,7 +25,7 @@ scripts/clean-code.js
 # azure function
 azure_funcapp/host.json
 
-# aws_cloudformation
-autoscale_params.txt
+# License
+*.lic
 
-#Linting
+.terraform*

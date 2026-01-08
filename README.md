@@ -1,103 +1,49 @@
-# Publishing to GitHub
+## Cross Zone HA(A-P) FortiGates with PAR
 
-For a DevOps project to be published on GitHub, it **MUST** include the components listed below. Without ALL of these components, a project cannot be published to GitHub.
+A Terraform script to deploy Cross Zone HA(A-P) cluster via Public Address Range. This template makes use of the FortiGate IBM SDN connector to failover in the event of a VM shutdown.
+After the active VM is back up, it will take over as active once again.
 
--   README.md - Project documentation in Markdown format
--   LICENSE - Provided by Legal and included in all projects
--   A document of license statements / disclosures of 3rd party dependencies
--   Project Source Code
+## Requirements
 
-A project **Should** include the following:
-
--   .gitignore file
--   Linting rules
--   A "test" folder (with at least one dummy test case)
--   For node.js based projects:
-
-    -   A 'pre-test' in the package.json that performs a test against the linting rules
-    -   'test' which performs all tests in the test folder
-
--   CHANGELOG.md file
-
-Wherever possible external third party references should _not_ be committed to submodules. For example, `node_modules`, `bower_components` etc. The project should employ a `package.json` or similar package management device to avoid packaging third party libraries, modules etc.
-
-> Ensure that you do not upload secrets/keys to Github. Where needed, keep secrets in a separate file which is included in your .gitignore or in environment variables.
-
-## GitHub Workflow
-
----
-
-Github Projects should be reviewed before a change is committed. Avoid pushing to main and instead create a new branch and then a pull request. Reviewers are recommended for projects to improve code quality and to catch errors.
-
-For information on the Github pull request workflow see the [following](https://guides.github.com/introduction/flow/).
-
-The following illustrates the basic workflow for Github:
-
--   Initilize git and clone your project:
-
-    `git init`
-
--   Clone your repo
-
-    `git clone <your repo>` example: `git clone git@github.com:fortinet/github-example-repo.git`
-
--   Check out a new branch
-
-    `git checkout -b new_dev_branch`
-
--   Add new files
-
-    `git add .`
-
--   Commit your changes
-
-    `git commit -m 'My commit message'`
-
--   Push your changes. This command will also create your new branch on github.
-
-    `git push -u origin new_dev_branch`
-
--   Once this is done you can navigate to your Github repo and you should see the following:
+-   [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) 0.13+
+-   Two FortiOS 7.0 BYOL Licenses.
+-   [A VPC with four subnets in a dual zones](https://cloud.ibm.com/docs/vpc/vpc-getting-started-with-ibm-cloud-virtual-private-cloud-infrastructure)
+-   [Public Gateways attached to egress subnets ](https://cloud.ibm.com/docs/vpc?topic=vpc-about-public-gateways)*(license validation requires egress connection to FortiGuard Servers)*
+-   [A configured IBM SSH key](https://cloud.ibm.com/docs/vpc?topic=vpc-ssh-keys)
+-   [A security group](https://cloud.ibm.com/docs/security-groups?topic=security-groups-about-ibm-security-groups)
 
 
-      ![PR example 1](./images/github_pr.png)
-      ```
+## Deployment overview
 
-      Select `Compare & pull request` or navigate to Pull request.
+> **Note:** For a local deployment, a Gen 2 API key will be needed. For details see [IBM Gen 2 API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#create_user_key).
 
-    ```
+Terraform deploys the following components:
 
--   From here you will see the Github PR request. You should add reviewers and assign yourself to the PR.
+-   Two FortiGate BYOL instances with four NICs each, one in each subnet in two different zones
+-   Two floating Public IP addresses: Attached to the HA management port (Port4) of each FortiGate.
+-   A Public Address Range with user defined length
+-   A Public Internet Routing table which updates routes in the event of a failover.
+-   One log disk per FortiGate.
+-   A basic bootstrap configuration with HA support.
 
+## Deployment
 
-      ![PR example 2](./images/github_pr2.png)
-   
+> **Note:** For Subnets, the UUID is required.
 
-### GitHub Releases
+1. Fill in the required Subnets, security group and VPC information as shown in the example below:
+2. Apply the plan.
+3. Outputs, such as the **Management IP** and **Default username and password** can be found under the `View Log` link.
 
----
+## Destroy the cluster
 
-Tagged releases are recommended for projects that require github releases.
-To create a new release version, tag the commit on Gerrit before it's merged:
-`git tag -a 1.0.0 -m "Initial Release" && git push --tags`.
-Once this commit is merged and published the tag can be used to create a release on Github.
+To destroy the cluster, click on `Actions...`->`Destroy`.
 
-Release tag version numbers should follow [semantic versioning](https://semver.org/#semantic-versioning-200) for consistent releases. Under this scheme, version numbers and the way they change convey meaning about the underlying code and what has been modified from one version to the next.
+# Support
 
-### GitHub Release Artifacts
+Fortinet-provided scripts in this and other GitHub projects do not fall under the regular Fortinet technical support scope and are not supported by FortiCare Support Services.
+For direct issues, please refer to the [Issues](https://github.com/fortinet/ibm-fortigate-terraform-deploy/issues) tab of this GitHub project.
+For other questions related to this project, contact [github@fortinet.com](mailto:github@fortinet.com).
 
-Some projects may wish to build artifacts for each release. For example, the fortigate-autoscale-\* projects generate a zip file which bundles all the dependencies needed to run the cloud functions included in the project:
+## License
 
--   Deployment release artifacts can be created/run with [GitHub Actions](https://github.com/features/actions).
--   Projects should trigger release builds [for each new tag](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestbranchestags)
--   Example workflows can be found [here](https://github.com/fortinet/fortigate-autoscale/blob/3.1.2/.github/workflows/auto-release-pipeline.yml) and [here](https://github.com/fortinet/fortigate-autoscale-aws/blob/3.2.1/.github/workflows/publish-releases.yml)
-
-> Pre-compiled executable artifacts will not be accepted for publishing to Fortinet's GitHub repositories.
-
-## Reporting Bugs
-
-Bugs can be reported on the repo Issues tab; internal issues and general issues should be reported on Mantis using the **DevOps** project.
-
-## Styleguide
-
-### External references
+[License](https://github.com/fortinet/ibm-fortigate-terraform-deploy/blob/main/LICENSE) © Fortinet Technologies. All rights reserved.
