@@ -13,7 +13,7 @@ jobs:
                   mkdir  ibm-fortigate-cross-zone-ha-par-terraform-deploy
             - name: 'Copy the files'
               run: |
-                  cp *.tf *.conf LICENSE README.md ./ibm-fortigate-cross-zone-ha-par-terraform-deploy/
+                  cp *.tf *.conf LICENSE.md README.md ./ibm-fortigate-cross-zone-ha-par-terraform-deploy/
             - name: 'Build the ZIP'
               run: |
                   tar -czf ibm-fortigate-cross-zone-ha-par-terraform-deploy.tar.gz ibm-fortigate-cross-zone-ha-par-terraform-deploy/
