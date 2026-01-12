@@ -55,19 +55,6 @@ variable "VPC" {
   description = "Name of the VPC you want to deploy a FortiGate into."
 }
 
-variable "PUBLIC_GATEWAY_ZONE1" {
-  type        = string
-  default     = ""
-  description = "Public Gateway ID of Zone 1"
-
-}
-
-variable "PUBLIC_GATEWAY_ZONE2" {
-  type        = string
-  default     = ""
-  description = "Public Gateway ID of Zone 2"
-
-}
 
 // Zone 1 Subnets
 variable "SUBNET_1_Z1" {
