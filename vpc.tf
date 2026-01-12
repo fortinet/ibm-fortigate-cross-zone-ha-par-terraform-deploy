@@ -144,30 +144,16 @@ resource "ibm_is_vpc_routing_table_route" "par_routing_table" {
 }
 
 
-# Public Gateway 
-resource "ibm_is_public_gateway" "pgw_z1" {
-
-  vpc  = data.ibm_is_vpc.vpc1.id
-  zone = var.ZONE_1
-  name = var.PUBLIC_GATEWAY_ZONE1
-}
-
-resource "ibm_is_public_gateway" "pgw_z2" {
-
-  vpc  = data.ibm_is_vpc.vpc1.id
-  zone = var.ZONE_2
-  name = var.PUBLIC_GATEWAY_ZONE2
-}
-
+#Public Gateway
 resource "ibm_is_subnet_public_gateway_attachment" "subnet_zone1" {
   subnet         = data.ibm_is_subnet.subnet1-z1.id
-  public_gateway = ibm_is_public_gateway.pgw_z1.id
+  public_gateway = var.PUBLIC_GATEWAY_ZONE1
 
 }
 
 resource "ibm_is_subnet_public_gateway_attachment" "subnet_zone2" {
   subnet         = data.ibm_is_subnet.subnet1-z2.id
-  public_gateway = ibm_is_public_gateway.pgw_z2.id
+  public_gateway = var.PUBLIC_GATEWAY_ZONE2
 
 }
 
