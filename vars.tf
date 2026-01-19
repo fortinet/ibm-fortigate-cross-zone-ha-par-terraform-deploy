@@ -174,12 +174,6 @@ variable "RESOURCE_GRP" {
   description = "The RESOURCE Group Name to attach to the FortiGate instances."
 }
 
-variable "ROUTING_TABLE_ID" {
-  type        = string
-  default     = ""
-  description = "The ID of the Subnet used for the HA management subnet. Tied to Port4."
-}
-
 variable "PAR_ADDRESS_COUNT" {
   type        = string
   default     = ""
