@@ -6,7 +6,7 @@ After the active VM is back up, it will take over as active once again.
 ## Requirements
 
 -   [Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) 0.13+
--   Two FortiOS 7.0 BYOL Licenses.
+-   Two FortiOS 8.0 BYOL Licenses.
 -   [A VPC with four subnets in a dual zones](https://cloud.ibm.com/docs/vpc/vpc-getting-started-with-ibm-cloud-virtual-private-cloud-infrastructure)
 -   [Public Gateways attached to egress subnets ](https://cloud.ibm.com/docs/vpc?topic=vpc-about-public-gateways)*(license validation requires egress connection to FortiGuard Servers)*
 -   [A configured IBM SSH key](https://cloud.ibm.com/docs/vpc?topic=vpc-ssh-keys)
