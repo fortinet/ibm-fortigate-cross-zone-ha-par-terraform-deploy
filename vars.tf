@@ -31,6 +31,9 @@ variable "IBMREGION" {
     "jp-tok"   = "tokyo-private"
     "jp-osa"   = "osaka-private"
     "eu-es"    = "madrid-private"
+    "in-mum"   = "mumbai-private"
+    "in-che"   = "chennai-private"
+    "ca-mon"   = "montreal-private"
   }
   description = "Map used to configure sdn connector for IBM in FortiOS"
 }
@@ -162,11 +165,6 @@ variable "FGT2_PORT4_MGMT_GATEWAY" {
   default     = ""
   description = "Gateway for Port 4 (HA management port) on the secondary (PASSIVE) FortiGate."
 }
-variable "SECURITY_GROUP" {
-  type        = string
-  default     = ""
-  description = "The Security Group to attach to the FortiGate instance Network Interfaces."
-}
 
 variable "RESOURCE_GRP" {
   type        = string
@@ -202,9 +200,9 @@ resource "random_string" "random_suffix" {
 
 // FortiOS Custom Image ID
 // https://docs.fortinet.com/document/fortigate-public-cloud/latest/ibm-cloud-administration-guide/992669/deploying-fortigate-vm-on-ibm-cloud
-// Deploys 7.6.7 image
+// Deploys 8.0.1 image
 variable "image" {
-  default = "cos://us-geo/fortinet/fortigate_byol_767_b3704_GA.qcow2"
+  default = "cos://us-geo/fortinet/fortigate_byol_801_b0245_ga.qcow2"
 }
 
 variable "IBMCLOUD_API_KEY" {
