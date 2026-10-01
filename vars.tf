@@ -162,11 +162,6 @@ variable "FGT2_PORT4_MGMT_GATEWAY" {
   default     = ""
   description = "Gateway for Port 4 (HA management port) on the secondary (PASSIVE) FortiGate."
 }
-variable "SECURITY_GROUP" {
-  type        = string
-  default     = ""
-  description = "The Security Group to attach to the FortiGate instance Network Interfaces."
-}
 
 variable "RESOURCE_GRP" {
   type        = string
